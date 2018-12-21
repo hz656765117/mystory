@@ -259,7 +259,7 @@ public final class Commons {
             String[] arr = tags.split(",");
             StringBuffer sbuf = new StringBuffer();
             for (String c : arr) {
-                sbuf.append("<a href=\"/tag/" + URLEncoder.encode(c, "UTF-8") + "\">" + c + "</a>");
+                sbuf.append("<a href=\"/index/tag/" + URLEncoder.encode(c, "UTF-8") + "\">" + c + "</a>");
             }
             return sbuf.toString();
         }
