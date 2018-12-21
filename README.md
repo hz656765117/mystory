@@ -4,9 +4,9 @@
 
  **个人博客开源项目** 
 
- **首页地址为：https://www.nmyswls.com** 
+ **首页地址为：https://www.huangzhuo.win/index/** 
 
- **后台管理：https://www.nmyswls.com/admin/login** 
+ **后台管理：https://www.huangzhuo.win/admin/login** 
 
 #### 软件架构
 
@@ -26,9 +26,9 @@
 2. maven环境，熟悉springboot
 3. down代码到本地
 4. 数据库文件放在sql中,直接导入到数据库中即可,数据库名字为story
-5. 编译没错后,直接运行Application文件即可,访问地址为:localhost即可(默认端口为80)
+5. 编译没错后,直接运行Application文件即可,访问地址为:localhost/index/即可(默认端口为80)
 6. 访问后台“/admin”或者“/admin/login”,用户名:admin 密码:123456
-7. 如果部署到Linux或者安装过程中碰到问题，请加技术交流(4060038)找群主
+
 
 #### 前台页面
  **首页** 
@@ -64,10 +64,7 @@
 - JDK: `JAVA 8`
 - WEB: `Tomcat8 （采用springboot框架开发时,并没有用到额外的tomcat 用的框架自带的）`
 
-> QQ群：4060038
 
-> 邮箱：zhangjianbing777@gmail.com
+> 邮箱：656765117@qq.com
 
-#### 使用说明
-
-**分享技术，品味人生。欢迎fork，喜欢的话，给个star呗!**
+ 

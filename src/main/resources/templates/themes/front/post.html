@@ -25,7 +25,7 @@
     </div>
 </article>
 <!-- 文章评论分页，需要带上文章的prefix+文章id -->
-<div th:replace="themes/front/comments::comments('article/'+${article.cid})"></div>
+<div th:replace="themes/front/comments::comments('index/article/'+${article.cid})"></div>
 <div th:replace="themes/front/footer::footer"></div>
 </body>
 </html>
