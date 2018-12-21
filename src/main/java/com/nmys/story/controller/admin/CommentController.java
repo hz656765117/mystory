@@ -72,12 +72,8 @@ public class CommentController extends BaseController {
     @ResponseBody
     @RequiresRoles("admin")
     public RestResponseBo updateCommentById(@RequestParam Integer coid,@RequestParam Integer status) {
-        commentService.updateComment();
-        String result = commentService.delCommentById(coid);
-        if (WebConstant.SUCCESS_RESULT.equals(result)) {
-            return RestResponseBo.ok();
-        }
-        return RestResponseBo.fail("系统异常，删除失败！");
+        commentService.updateCommentById(coid);
+        return RestResponseBo.ok();
     }
 
 }
