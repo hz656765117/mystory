@@ -71,8 +71,11 @@ public class CommentController extends BaseController {
     @PostMapping("/status")
     @ResponseBody
     @RequiresRoles("admin")
-    public RestResponseBo updateCommentById(@RequestParam Integer coid,@RequestParam Integer status) {
-        commentService.updateCommentById(coid);
+    public RestResponseBo updateCommentById(@RequestParam Integer coid,@RequestParam String status) {
+        Comments comment = new Comments();
+        comment.setCoid(coid);
+        comment.setStatus(status);
+        commentService.updateComment(comment);
         return RestResponseBo.ok();
     }
 
