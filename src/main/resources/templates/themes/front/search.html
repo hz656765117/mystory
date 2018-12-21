@@ -34,7 +34,7 @@
             <div class="search-tags">
                 <p>👇 The following tabs can help you!</p>
                 <th:block th:each="tag:${tagList}">
-                    <a th:href="@{'/search/'+${tag.name}}" class="bg-white" th:text="'# '+${tag.name}+'('+${tag.count}+')'"></a>
+                    <a th:href="@{'/index/search/'+${tag.name}}" class="bg-white" th:text="'# '+${tag.name}+'('+${tag.count}+')'"></a>
                 </th:block>
                 <div class="search-tags-hr bg-deepgrey"></div>
             </div>
