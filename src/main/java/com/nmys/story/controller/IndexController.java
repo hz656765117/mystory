@@ -507,7 +507,7 @@ public class IndexController extends BaseController {
     }
 
     /**
-     * Description: 灵魂画师
+     * Description: 灵魂画师hits
      * Author:70KG
      * Param []
      * Return java.lang.String

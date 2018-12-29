@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='分类管理',active='category'">
 <header th:replace="admin/header::headerFragment(${title},${active})"></header>
+
+
+<link th:href="@{/backadmin/plugins/select2.dist.css/select2-bootstrap.css}" rel="stylesheet"/>
+<link th:href="@{/backadmin/css/select2.min.css}" rel="stylesheet"/>
+
+
+
 <body class="fixed-left">
 <div id="wrapper">
     <div th:replace="admin/header::header-body"></div>
@@ -20,7 +27,8 @@
                                 <th:block th:each="c : ${categories}">
                                     <div class="btn-group m-b-10">
                                         <th:block th:if="${c.name == '默认分类'}">
-                                            <button type="button" th:class="'btn btn-'+${adminCommons.rand_color()}+' waves-effect waves-light'">
+                                            <button type="button"
+                                                    th:class="'btn btn-'+${adminCommons.rand_color()}+' waves-effect waves-light'">
                                                 <th:block th:text="${c.name}"/>
                                                 <th:block th:text="' ('+${c.count}+')'"/>
                                             </button>
@@ -35,11 +43,13 @@
                                             </button>
                                             <ul class="dropdown-menu" role="menu">
                                                 <li>
-                                                    <a href="javascript:void(0)" th:attr="mid=${c.mid},cname=${c.name}" class="edit-category">修改</a>
+                                                    <a href="javascript:void(0)" th:attr="mid=${c.mid},cname=${c.name}"
+                                                       class="edit-category">修改</a>
                                                 </li>
 
                                                 <li>
-                                                    <a href="javascript:void(0)" th:attr="mid=${c.mid}" class="del-category">删除</a>
+                                                    <a href="javascript:void(0)" th:attr="mid=${c.mid}"
+                                                       class="del-category">删除</a>
                                                 </li>
                                             </ul>
                                         </th:block>
@@ -66,7 +76,13 @@
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
                                             <li>
-                                                <a href="javascript:void(0)" th:attr="mid=${c.mid}" class="del-category">删除</a>
+                                                <a href="javascript:void(0)" th:attr="mid=${c.mid},cname=${c.name}"
+                                                   class="edit-category">修改</a>
+                                            </li>
+
+                                            <li>
+                                                <a href="javascript:void(0)" th:attr="mid=${c.mid}"
+                                                   class="del-category">删除</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -80,9 +96,17 @@
                             <div class="panel-body">
                                 <form id="cform" class="form-inline" role="form">
                                     <input type="hidden" id="mid"/>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="cname" placeholder="请输入分类名称"/>
+                                    <div class="form-group col-md-2">
+                                        <input type="text" class="form-control" id="cname" placeholder="请输入名称"/>
                                     </div>
+
+                                    <div class="form-group col-md-2">
+                                        <select id="type" class="select2 form-control" data-placeholder="请选择类型">
+                                            <option value="category" selected="selected">      分类      </option>
+                                            <option value="tag">      标签      </option>
+                                        </select>
+                                    </div>
+
                                     <button id="save-category-btn" type="button"
                                             class="btn btn-success waves-effect waves-light m-l-10">保存分类
                                     </button>
@@ -105,10 +129,21 @@
     $('#save-category-btn').click(function () {
         var cname = $('#cform #cname').val();
         var mid = $('#cform #mid').val();
+        var type = $('#cform #type').val();
+
+        if (!cname) {
+            tale.alertWarn('请输入名称');
+            return;
+        }
+        if (!type) {
+            tale.alertWarn('请选择类型');
+            return;
+        }
+
         if (cname && cname != '') {
             tale.post({
                 url: '/admin/category/save',
-                data: {mid: mid, cname: cname},
+                data: {mid: mid, cname: cname, type: type},
                 success: function (result) {
                     $('#cform #mid').val('');
                     $('#cform #cname').val('');

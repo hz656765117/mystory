@@ -6,6 +6,7 @@ import com.nmys.story.model.bo.RestResponseBo;
 import com.nmys.story.model.dto.Types;
 import com.nmys.story.model.entity.Metas;
 import com.nmys.story.service.IMetaService;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,9 +45,9 @@ public class CategoryController extends BaseController {
     @RequiresPermissions("create")
     @PostMapping(value = "save")
     @ResponseBody
-    public RestResponseBo saveCategory(@RequestParam String cname, @RequestParam Integer mid) {
+    public RestResponseBo saveCategory(@RequestParam String cname, @RequestParam Integer mid, @RequestParam String type) {
         try {
-            metasService.saveMeta(Types.CATEGORY, cname, mid);
+            metasService.saveMeta(StringUtils.isNotBlank(type) ? type : Types.CATEGORY, cname, mid);
         } catch (Exception e) {
             String msg = "分类保存失败";
             LOGGER.error(msg, e);
